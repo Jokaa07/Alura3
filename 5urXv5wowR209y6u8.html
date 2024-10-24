@@ -1,0 +1,184 @@
+<html><head><base href="https://example.com">
+<style>
+:root {
+  --primary-color: #2196f3;
+  --secondary-color: #ff4081;
+  --accent-color: #7c4dff;
+  --background: #f0f8ff;
+}
+
+body {
+  background: var(--background);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 25px;
+  border: 2px solid var(--primary-color);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.search-bar:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(33, 150, 243, 0.3);
+  transform: scale(1.02);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.card:hover img {
+  filter: brightness(1.1);
+}
+
+.header {
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.nav-btn {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  transform: scale(1.05);
+  background: var(--secondary-color);
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Biblioteca Digital</h1>
+</div>
+
+<div class="search-container">
+  <input type="text" class="search-bar" placeholder="Pesquisar por título, autor ou assunto...">
+</div>
+
+<div class="nav-buttons">
+  <button class="nav-btn">Todos</button>
+  <button class="nav-btn">Tecnologia</button>
+  <button class="nav-btn">Design</button>
+  <button class="nav-btn">Desenvolvimento</button>
+</div>
+
+<div class="card-grid">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1524055988636-436cfa46e59e?q=80&w=1000&auto=format&fit=crop" alt="Livro sobre Design com elementos criativos e coloridos" width="200" height="280">
+    <h3>Liderança em Design</h3>
+    <p>Aprenda sobre liderança no contexto do design moderno</p>
+  </div>
+  
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?q=80&w=1000&auto=format&fit=crop" alt="Livro sobre JavaScript com código na capa" width="200" height="280">
+    <h3>JavaScript Assertivo</h3>
+    <p>Domine JavaScript com práticas modernas</p>
+  </div>
+  
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1661961110218-35af7210f803?q=80&w=1000&auto=format&fit=crop" alt="Livro sobre Apache Kafka com design tecnológico" width="200" height="280">
+    <h3>Apache Kafka e Spring Boot</h3>
+    <p>Integração e desenvolvimento com microserviços</p>
+  </div>
+  
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1000&auto=format&fit=crop" alt="Livro sobre React com design moderno" width="200" height="280">
+    <h3>React na Prática</h3>
+    <p>Desenvolvimento de interfaces modernas com React</p>
+  </div>
+  
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=1000&auto=format&fit=crop" alt="Livro sobre Python com design minimalista" width="200" height="280">
+    <h3>Python Avançado</h3>
+    <p>Técnicas avançadas de programação em Python</p>
+  </div>
+  
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1000&auto=format&fit=crop" alt="Livro sobre UX Design com interface ilustrada" width="200" height="280">
+    <h3>UX Design Estratégico</h3>
+    <p>Estratégias eficazes para melhor experiência do usuário</p>
+  </div>
+</div>
+
+<script>
+document.querySelector('.search-bar').addEventListener('input', function(e) {
+  const searchValue = e.target.value.toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  
+  cards.forEach(card => {
+    const title = card.querySelector('h3').textContent.toLowerCase();
+    const description = card.querySelector('p').textContent.toLowerCase();
+    
+    if (title.includes(searchValue) || description.includes(searchValue)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+});
+
+const buttons = document.querySelectorAll('.nav-btn');
+buttons.forEach(button => {
+  button.addEventListener('click', function() {
+    buttons.forEach(btn => btn.style.background = 'var(--accent-color)');
+    this.style.background = 'var(--secondary-color)';
+  });
+});
+</script>
+
+</body></html>
